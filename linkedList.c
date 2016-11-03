@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void insertFirst(knot *start, char *x)
+void insert_first(pointer *start, char *x)
 {
-    knot k;
-    k = malloc(sizeof(struct knot_s));
+    pointer k;
+    k = malloc(sizeof(struct knot));
     k->key = malloc(strlen(x) * sizeof(char));
     strcpy(k->key, x);
     k->val = 0;
@@ -13,16 +13,15 @@ void insertFirst(knot *start, char *x)
     *start = k;
 }
 
-knot find(knot start, char *x)
+pointer find(pointer start, char *x)
 {
-    knot k;
+    pointer k;
     for (k = start; k && k->key != x; k = k->next)
         ;
     return k;
 }
 
-knot newList()
+pointer new_list()
 {
-    knot k = NULL;
-    return k;
+    return NULL;
 }

@@ -1,0 +1,4 @@
+#ifndef TABELASIMBOLO_AB
+#define TABELASIMBOLO_AB
+
+#endif

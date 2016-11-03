@@ -1,0 +1,5 @@
+
+#ifndef TABELASIMBOLO_VO
+#define TABELASIMBOLO_VO
+
+#endif
