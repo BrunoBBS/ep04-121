@@ -23,6 +23,7 @@ pointer stableld_create()
     return new_list();
 }
 
+/*FALTAQ FAZER ELE PRINTAR */
 void stableld_print_o(pointer start)
 {
     pinter p;

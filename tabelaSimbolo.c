@@ -11,12 +11,86 @@
 
 char *nextWord(FILE *input);
 
-void stableLD(FILE *input)
+void stable_LD(FILE *input, char *mode)
 {
     char *word;
-    pointer *ld;
-    word = nextWord(input);
-    stableld_insert(ld, word);
+    pointer *stable = stableld_create();
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        stableld_insert(stable, word);
+
+    /*FALTA FAZER CODIGO DE PRINT*/
+    if (strcmp(mode, "A"))
+        stableld_print_a(stable);
+    else
+        stableld_print_o(stable);
+}
+
+void stable_VD(FILE *input, char *mode)
+{
+    char *word;
+    stablevd *table = stablevd_create();
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        stablevd_insert(table, word);
+
+    if (strcmp(mode, "A"))
+    {
+        /*Codigo de print alfabetico*/
+    }
+    else
+    {
+        /*codigo do print numerico*/
+    }
+}
+
+void stable_VO(FILE *input, char *mode)
+{
+    char *word;
+    /*trocar*/ pointer *stable;
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        /*stable**_insert();*/;
+
+    if (strcmp(mode, "A"))
+    {
+        /*Codigo de print alfabetico*/
+    }
+    else
+    {
+        /*codigo do print numerico*/
+    }
+}
+
+void stable_LO(FILE *input, char *mode)
+{
+    char *word;
+    pointer *stable;
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        /*stable**_insert();*/;
+
+    if (strcmp(mode, "A"))
+    {
+        /*Codigo de print alfabetico*/
+    }
+    else
+    {
+        /*codigo do print numerico*/
+    }
+}
+
+void stable_AB(FILE *input, char *mode)
+{
+    char *word;
+    pointer *stable;
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        /*stable**_insert();*/;
+
+    if (strcmp(mode, "A"))
+    {
+        /*Codigo de print alfabetico*/
+    }
+    else
+    {
+        /*codigo do print numerico*/
+    }
 }
 
 char *nextWord(FILE *input)
@@ -75,17 +149,17 @@ int main(int argc, char *argv[])
     /*le a implementacao da tabela*/
     strncpy(mode, argv[2], 2);
     if (!strcmp(mode, "VD"))
-        stable_VD(input);
+        stable_VD(input, argv[3]);
 
     else if (!strcmp(mode, "VO"))
         stable_VO(input, argv[3]);
 
     else if (!strcmp(mode, "LD"))
-        stable_LD(input);
+        stable_LD(input, argv[3]);
 
     else if (!strcmp(mode, "LO"))
         stable_LO(input, argv[3]);
 
     else if (!strcmp(mode, "AB"))
-        stable_AB(input);
+        stable_AB(input, argv[3]);
 }

@@ -8,4 +8,8 @@ void stableld_insert(pointer *start, char *x);
 
 pointer stableld_create();
 
+void stableld_print_o(pointer start);
+
+void stableld_print_a(pointer start);
+
 #endif
