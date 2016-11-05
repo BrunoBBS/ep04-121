@@ -63,12 +63,20 @@ void stablevd_destroy(stablevd *table)
     free(table);
 }
 
-int comp(const void *a, const void *b)
+int comp_a(const void *a, const void *b)
 {
     return
 }
 
-void stablevd_print(stable *table, char *mode)
+int comp_n(const void *a, const void *b)
 {
-    if (strcmp())
+    return *(int *)a-*(int *)b;
+}
+
+void stablevd_print(stable *table, char mode)
+{
+    if (mode == 'A')
+        qsort(table->vect, table->size, sizeof(item), comp_a());
+    else
+        qsort(table->vect, table->size, sizeof(item), comp_a());
 }
