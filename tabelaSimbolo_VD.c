@@ -1,6 +1,18 @@
 #include "tabelaSimbolo_VD.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+
+
+int comp_a(const void *a, const void *b)
+{
+    return strcmp(((item *)a)->key, ((item *)b)->key);
+}
+
+int comp_n(const void *a, const void *b)
+{
+    return ((item *)a)->val - ((item *) b)->val;
+}
 
 stablevd *stablevd_create()
 {
@@ -63,20 +75,15 @@ void stablevd_destroy(stablevd *table)
     free(table);
 }
 
-int comp_a(const void *a, const void *b)
-{
-    return
-}
 
-int comp_n(const void *a, const void *b)
+void stablevd_print(stablevd *table, char mode)
 {
-    return *(int *)a-*(int *)b;
-}
-
-void stablevd_print(stable *table, char mode)
-{
+    int i;
     if (mode == 'A')
-        qsort(table->vect, table->size, sizeof(item), comp_a());
+        qsort(table->vect, table->size, sizeof(item), comp_a);
     else
-        qsort(table->vect, table->size, sizeof(item), comp_a());
+        qsort(table->vect, table->size, sizeof(item), comp_n);
+
+    for (i = 0; i < table->size; i++)
+        printf("%s %d", table->vect[i].key, table->vect[i].val);
 }

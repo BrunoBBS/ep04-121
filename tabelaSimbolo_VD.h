@@ -22,6 +22,6 @@ int stablevd_find(stablevd *table, char *x);
 
 void stablevd_destroy(stablevd *table);
 
-void stablevd_print(stablevd *table, char *mode);
+void stablevd_print(stablevd *table, char mode);
 
 #endif

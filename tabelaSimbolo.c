@@ -11,28 +11,28 @@
 
 char *nextWord(FILE *input);
 
-void stable_LD(FILE *input, char *mode)
+void stable_LD(FILE *input, char mode)
 {
     char *word;
-    pointer *stable = stableld_create();
+    pointer *table = stableld_create();
     for (word = nextWord(input); *word > 0; word = nextWord(input))
-        stableld_insert(stable, word);
+        stableld_insert(table, word);
 
     /*FALTA FAZER CODIGO DE PRINT*/
-    if (strcmp(mode, "A"))
-        stableld_print_a(stable);
+    if (mode == 'a')
+        stableld_print_a(table);
     else
-        stableld_print_o(stable);
+        stableld_print_o(table);
 }
 
-void stable_VD(FILE *input, char *mode)
+void stable_VD(FILE *input, char mode)
 {
     char *word;
     stablevd *table = stablevd_create();
     for (word = nextWord(input); *word > 0; word = nextWord(input))
         stablevd_insert(table, word);
 
-    if (strcmp(mode, "A"))
+    if (mode == 'a')
     {
         /*Codigo de print alfabetico*/
     }
@@ -42,14 +42,14 @@ void stable_VD(FILE *input, char *mode)
     }
 }
 
-void stable_VO(FILE *input, char *mode)
+void stable_VO(FILE *input, char mode)
 {
     char *word;
     /*trocar*/ pointer *stable;
     for (word = nextWord(input); *word > 0; word = nextWord(input))
         /*stable**_insert();*/;
 
-    if (strcmp(mode, "A"))
+    if (mode == 'a')
     {
         /*Codigo de print alfabetico*/
     }
@@ -59,14 +59,14 @@ void stable_VO(FILE *input, char *mode)
     }
 }
 
-void stable_LO(FILE *input, char *mode)
+void stable_LO(FILE *input, char mode)
 {
     char *word;
     pointer *stable;
     for (word = nextWord(input); *word > 0; word = nextWord(input))
         /*stable**_insert();*/;
 
-    if (strcmp(mode, "A"))
+    if (mode == 'a')
     {
         /*Codigo de print alfabetico*/
     }
@@ -76,14 +76,14 @@ void stable_LO(FILE *input, char *mode)
     }
 }
 
-void stable_AB(FILE *input, char *mode)
+void stable_AB(FILE *input, char mode)
 {
     char *word;
     pointer *stable;
     for (word = nextWord(input); *word > 0; word = nextWord(input))
         /*stable**_insert();*/;
 
-    if (strcmp(mode, "A"))
+    if (mode == 'a')
     {
         /*Codigo de print alfabetico*/
     }
@@ -112,10 +112,10 @@ char *nextWord(FILE *input)
 
         currc = fgetc(input);
         if (i == 0 && isalpha(currc))
-            newWord[i] = currc;
+            newWord[i] = tolower(currc);
 
         else if (isalnum(currc))
-            newWord[i] = currc;
+            newWord[i] = tolower(currc);
         else
             break;
 
@@ -127,7 +127,7 @@ char *nextWord(FILE *input)
 int main(int argc, char *argv[])
 {
     FILE *input;
-    char *mode = malloc(3 * sizeof(char));
+    char ord, *mode = malloc(3 * sizeof(char));
 
     /*Termina o programa com erro caso numero de argumentos seja incorreto*/
     if (argc < 4)
@@ -146,20 +146,23 @@ int main(int argc, char *argv[])
     if (input == 0)
         printf("Erro ao abrir arquivo de entrada: '%s'.\n", argv[1]);
 
+    ord = tolower(argv[3][0]);
+
     /*le a implementacao da tabela*/
     strncpy(mode, argv[2], 2);
+
     if (!strcmp(mode, "VD"))
-        stable_VD(input, argv[3]);
+        stable_VD(input, ord);
 
     else if (!strcmp(mode, "VO"))
-        stable_VO(input, argv[3]);
+        stable_VO(input, ord);
 
     else if (!strcmp(mode, "LD"))
-        stable_LD(input, argv[3]);
+        stable_LD(input, ord);
 
     else if (!strcmp(mode, "LO"))
-        stable_LO(input, argv[3]);
+        stable_LO(input, ord);
 
     else if (!strcmp(mode, "AB"))
-        stable_AB(input, argv[3]);
+        stable_AB(input, ord);
 }
