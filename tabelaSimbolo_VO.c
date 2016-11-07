@@ -1,6 +1,8 @@
 #include "tabelaSimbolo_VO.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include "cmp.h"
 
 stablevo *stablevo_create()
 {
@@ -16,7 +18,8 @@ int find_place(stablevo *table, char *x, int stt, int fsh, int mid)
     int aux = strcmp(x, table->vect[mid].key);
     if ((fsh - stt) == 0)
     {
-        if(aux > 0)
+        if (fsh == 0) return 0;
+        if (aux > 0)
             return mid + 1;
         else
             return mid - 1;
@@ -32,11 +35,11 @@ void stablevo_insert(stablevo *table, char *x)
 {
     int i, pos;
     item *aux;
-    if (aux = stablevo_find(table, x))
+    if ((aux = stablevo_find(table, x)))
         (aux->val)++;
     else
     {
-        pos = find_place(table, x, 0, table->size - 1, (table->size - 1)/2);
+        pos = find_place(table, x, 0, table->lfree - 1, (table->lfree - 1)/2);
 
         if (table->lfree == table->size)
         {
@@ -68,7 +71,7 @@ void stablevo_insert(stablevo *table, char *x)
 
 item *stablevo_find(stablevo *table, char *x)
 {
-    return (item *) bsearch(x, table->vect, table->size, sizeof(item),item);
+    return (item *) bsearch(x, table->vect, table->size, sizeof(item), comp_a);
 }
 
 void stablevo_destroy(stablevo *table)
@@ -80,4 +83,12 @@ void stablevo_destroy(stablevo *table)
     free(table);
 }
 
+void stablevo_print(stablevo *table, char mode)
+{
+    int i;
+    if (mode == 'o')
+        qsort(table->vect, table->size, sizeof(item), comp_n);
 
+    for (i = 0; i < table->size; i++)
+        printf("%s %d\n", table->vect[i].key, table->vect[i].val);
+}

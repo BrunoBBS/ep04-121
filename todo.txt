@@ -1,0 +1,6 @@
+-AB
+-LO
+-Terminar LD
+-MAKEFILE
+-testes
+-relatorio
