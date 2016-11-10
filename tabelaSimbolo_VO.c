@@ -83,25 +83,28 @@ void stablevo_insert(stablevo *table, char *x)
 item *stablevo_find(stablevo *table, char *x)
 {
     printf("Vai procurar na tabela\n");
-    printf("\n");
     return (item *)bsearch(x, table->vect, table->lfree, sizeof(item), comp_vect_a);
 }
 
 void stablevo_destroy(stablevo *table)
 {
     int i;
-    for (i = 0; i < table->lfree; i++)
-        free(table->vect[i].key);
+    printf("Vai dar free\n");
+    for (i = 0; i < table->size; i++)
+        free((table->vect[i]).key);
+    printf("Deu free nas key\n");
     free(table->vect);
+    printf("Deu free njo vetor\n");
     free(table);
+    printf("Deu free ta bele toda\n");
 }
 
 void stablevo_print(stablevo *table, char mode)
 {
     int i;
     if (mode == 'o')
-        qsort(table->vect, table->size, sizeof(item), comp_vect_n);
+        qsort(table->vect, table->lfree, sizeof(item), comp_vect_n);
 
-    for (i = 0; i < table->size; i++)
+    for (i = 0; i < table->lfree; i++)
         printf("%s %d\n", table->vect[i].key, table->vect[i].val);
 }

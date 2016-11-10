@@ -19,7 +19,7 @@ pointer stablelo_insert(pointer *start, char *x, char mode)
         free(x);
     }
     else
-        insert_sorted(start, x, mode);
+        insert_sorted(start, x);
 }
 
 pointer stablelo_create()

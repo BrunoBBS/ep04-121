@@ -11,15 +11,16 @@ stablevd *stablevd_create()
     S = malloc(sizeof(stablevd));
     S->vect = malloc(3 * sizeof(item));
     S->lfree = 0;
+    S->size = 3;
     return S;
 }
 
 int stablevd_find(stablevd *table, char *x)
 {
-    int i, found;
+    int i, found = 0;
     for (i = 0; !found && i < table->lfree; i++)
     {
-        if (strcmp(table->vect[i].key, x))
+        if (strcmp(table->vect[i].key, x) == 0)
             found = 1;
     }
     if (found)
@@ -48,13 +49,13 @@ void stablevd_insert(stablevd *table, char *x)
 
             table->vect[table->lfree].key = x;
             table->vect[table->lfree].val = 1;
-            table->lfree++;
+            (table->lfree)++;
         }
         else
         {
             table->vect[table->lfree].key = x;
             table->vect[table->lfree].val = 1;
-            table->lfree++;
+            (table->lfree)++;
         }
     }
 }
@@ -71,11 +72,19 @@ void stablevd_destroy(stablevd *table)
 void stablevd_print(stablevd *table, char mode)
 {
     int i;
-    if (mode == 'A')
+    if (mode == 'a')
+    {
         qsort(table->vect, table->size, sizeof(item), comp_vect_a);
+        printf("deu qsort pra alfa\n");
+    }
     else
+    {
         qsort(table->vect, table->size, sizeof(item), comp_vect_n);
+        printf("deu qsort pra num\n");
+    }
 
-    for (i = 0; i < table->size; i++)
-        printf("%s %d", table->vect[i].key, table->vect[i].val);
+    printf("vai printar \n");
+
+    for (i = 0; i < table->lfree; i++)
+        printf("%s %d\n", (table->vect[i]).key, (table->vect[i]).val);
 }

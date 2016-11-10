@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-Wall -ansi -pedantic -pg
+CFLAGS:=-Wall -ansi -pedantic -g
 BIN:=ep4
 
 #make binaries
@@ -28,6 +28,6 @@ clean:
 	rm -f tabelaSimbolo_LD.o
 	rm -f tabelaSimbolo_AB.o
 	rm -f linkedList.o
-	rm -f auxFuncs.c
+	rm -f auxFuncs.o
 
 #debug

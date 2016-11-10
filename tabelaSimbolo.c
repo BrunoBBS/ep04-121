@@ -16,7 +16,7 @@ void stable_VD(FILE *input, char mode)
 {
     char *word;
     stablevd *table = stablevd_create();
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
+    for (word = nextWord(input); word[0] > 0; word = nextWord(input))
         stablevd_insert(table, word);
 
     stablevd_print(table, mode);
@@ -28,7 +28,7 @@ void stable_VO(FILE *input, char mode)
     char *word;
     stablevo *table = stablevo_create();
     printf("Criou tabela\n");
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
+    for (word = nextWord(input); word[0] > 0; word = nextWord(input))
         stablevo_insert(table, word);
     printf("Preencheu tabela\n");
     stablevo_print(table, mode);
@@ -41,7 +41,7 @@ void stable_LD(FILE *input, char mode)
 {
     char *word;
     pointer table = stableld_create();
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
+    for (word = nextWord(input); word[0] > 0; word = nextWord(input))
         stableld_insert(&table, word);
 
     if (mode == 'a')
@@ -56,8 +56,9 @@ void stable_LO(FILE *input, char mode)
 {
     char *word;
     pointer table = stablelo_create();
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
-        stablelo_insert(&table, word);
+    for (word = nextWord(input); word > 0; word = nextWord(input))
+        if (word > 0)
+            stablelo_insert(&table, word);
 
     if (mode == 'a')
         stablelo_print_a(table);
@@ -100,16 +101,22 @@ char *nextWord(FILE *input)
         }
 
         currc = fgetc(input);
+        if (currc == -1)
+            return -1;
         if (i == 0 && isalpha(currc))
             newWord[i] = tolower(currc);
 
-        else if (isalnum(currc))
+        else if (i != 0 && isalnum(currc))
             newWord[i] = tolower(currc);
+        else if (i == 0)
+            continue;
         else
             break;
 
         i++;
+
     } while (1);
+    printf("A palvra é: %s,  valendo 100 mil reais\n", newWord);
     return newWord;
 }
 

@@ -27,7 +27,7 @@ pointer new_list()
     return NULL;
 }
 
-void insert_sorted(pointer *start, char *x, char mode)
+void insert_sorted(pointer *start, char *x)
 {
     pointer p, old, new;
 
@@ -36,13 +36,19 @@ void insert_sorted(pointer *start, char *x, char mode)
     new->val = 1;
     p = *start;
     old = NULL;
-    while (p && strcmp(p->key, x) < 0)
+    while (p && strcmp(p->key, x) > 0)
     {
         old = p;
         p = p->next;
     }
     if (!old)
+    {
+        new->next = *start;
         *start = new;
+    }
     else
-        old->next = p;
+    {
+        old->next = new;
+        new->next = p;
+    }
 }
