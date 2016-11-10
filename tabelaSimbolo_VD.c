@@ -1,8 +1,9 @@
 #include "tabelaSimbolo_VD.h"
+#include "auxFuncs.h"
+#include "types.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include "cmp.h"
 
 stablevd *stablevd_create()
 {
@@ -32,6 +33,7 @@ void stablevd_insert(stablevd *table, char *x)
     if ((pos = stablevd_find(table, x)) >= 0)
     {
         (table->vect[pos].val)++;
+        free(x);
     }
     else
     {
@@ -66,14 +68,13 @@ void stablevd_destroy(stablevd *table)
     free(table);
 }
 
-
 void stablevd_print(stablevd *table, char mode)
 {
     int i;
     if (mode == 'A')
-        qsort(table->vect, table->size, sizeof(item), comp_a);
+        qsort(table->vect, table->size, sizeof(item), comp_vect_a);
     else
-        qsort(table->vect, table->size, sizeof(item), comp_n);
+        qsort(table->vect, table->size, sizeof(item), comp_vect_n);
 
     for (i = 0; i < table->size; i++)
         printf("%s %d", table->vect[i].key, table->vect[i].val);

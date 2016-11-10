@@ -1,18 +1,8 @@
 #ifndef TABELASIMBOLO_VO
 #define TABELASIMBOLO_VO
+#include "types.h"
 
-typedef struct item_s
-{
-    char *key;
-    int val;
-} item;
-
-typedef struct stablevo_s
-{
-    item *vect;
-    int lfree;
-    int size;
-} stablevo;
+typedef struct stable_s stablevo;
 
 stablevo *stablevo_create();
 

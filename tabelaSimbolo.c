@@ -1,29 +1,16 @@
+#include "auxFuncs.h"
 #include "tabelaSimbolo_AB.h"
 #include "tabelaSimbolo_LD.h"
 #include "tabelaSimbolo_LO.h"
 #include "tabelaSimbolo_VD.h"
 #include "tabelaSimbolo_VO.h"
-
+#include "types.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 char *nextWord(FILE *input);
-
-void stable_LD(FILE *input, char mode)
-{
-    char *word;
-    pointer *table = stableld_create();
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
-        stableld_insert(table, word);
-
-    /*FALTA FAZER CODIGO DE PRINT*/
-    if (mode == 'a')
-        stableld_print_a(table);
-    else
-        stableld_print_o(table);
-}
 
 void stable_VD(FILE *input, char mode)
 {
@@ -32,66 +19,68 @@ void stable_VD(FILE *input, char mode)
     for (word = nextWord(input); *word > 0; word = nextWord(input))
         stablevd_insert(table, word);
 
-    if (mode == 'a')
-    {
-        /*Codigo de print alfabetico*/
-    }
-    else
-    {
-        /*codigo do print numerico*/
-    }
+    stablevd_print(table, mode);
+    stablevd_destroy(table);
 }
 
 void stable_VO(FILE *input, char mode)
 {
     char *word;
-    /*trocar*/ pointer *stable;
+    stablevo *table = stablevo_create();
+    printf("Criou tabela\n");
     for (word = nextWord(input); *word > 0; word = nextWord(input))
-        /*stable**_insert();*/;
+        stablevo_insert(table, word);
+    printf("Preencheu tabela\n");
+    stablevo_print(table, mode);
+    printf("Printou tabela\n");
+    stablevo_destroy(table);
+    printf("Destruiu tabela\n");
+}
+
+void stable_LD(FILE *input, char mode)
+{
+    char *word;
+    pointer table = stableld_create();
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        stableld_insert(&table, word);
 
     if (mode == 'a')
-    {
-        /*Codigo de print alfabetico*/
-    }
+        stableld_print_a(table);
     else
-    {
-        /*codigo do print numerico*/
-    }
+        stableld_print_o(table);
+
+    stableld_destroy(&table);
 }
 
 void stable_LO(FILE *input, char mode)
 {
     char *word;
-    pointer *stable;
+    pointer table = stablelo_create();
     for (word = nextWord(input); *word > 0; word = nextWord(input))
-        /*stable**_insert();*/;
+        stablelo_insert(&table, word);
 
     if (mode == 'a')
-    {
-        /*Codigo de print alfabetico*/
-    }
+        stablelo_print_a(table);
     else
-    {
-        /*codigo do print numerico*/
-    }
+        stablelo_print_o(table);
+
+    stablelo_destroy(&table);
 }
 
-void stable_AB(FILE *input, char mode)
-{
-    char *word;
-    pointer *stable;
-    for (word = nextWord(input); *word > 0; word = nextWord(input))
-        /*stable**_insert();*/;
-
-    if (mode == 'a')
-    {
-        /*Codigo de print alfabetico*/
-    }
-    else
-    {
-        /*codigo do print numerico*/
-    }
-}
+/** void stable_AB(FILE *input, char mode)
+  * {
+  *     char *word;
+  *     pointer *stable;
+  *     for (word = nextWord(input); *word > 0; word = nextWord(input))
+  *         stableab_insert();
+  *
+  *     if (mode == 'a')
+  *     {
+  *     }
+  *     else
+  *     {
+  *     }
+  * } */
 
 char *nextWord(FILE *input)
 {
@@ -132,12 +121,12 @@ int main(int argc, char *argv[])
     /*Termina o programa com erro caso numero de argumentos seja incorreto*/
     if (argc < 4)
     {
-        printf("Poucos argumentos. Uso: ep4 <entrada> <estrutura> <ordenação>\n");
+        printf("Poucos argumentos. Uso: %s <entrada> <estrutura> <ordenação>\n", argv[0]);
         return -1;
     }
     else if (argc > 4)
     {
-        printf("Argumentos demais. Uso: ep4 <entrada> <estrutura> <ordenação>\n");
+        printf("Argumentos demais. Uso: %s <entrada> <estrutura> <ordenação>\n", argv[0]);
         return -1;
     }
 
@@ -163,6 +152,6 @@ int main(int argc, char *argv[])
     else if (!strcmp(mode, "LO"))
         stable_LO(input, ord);
 
-    else if (!strcmp(mode, "AB"))
-        stable_AB(input, ord);
+    /** else if (!strcmp(mode, "AB"))
+      *     stable_AB(input, ord); */
 }
