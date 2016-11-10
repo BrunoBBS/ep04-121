@@ -17,7 +17,7 @@ void insert_first(pointer *start, char *x)
 pointer find(pointer start, char *x)
 {
     pointer k;
-    for (k = start; k && k->key != x; k = k->next)
+    for (k = start; k && strcmp(k->key, x) != 0; k = k->next)
         ;
     return k;
 }
@@ -36,7 +36,7 @@ void insert_sorted(pointer *start, char *x)
     new->val = 1;
     p = *start;
     old = NULL;
-    while (p && strcmp(p->key, x) > 0)
+    while (p && strcmp(p->key, x) < 0)
     {
         old = p;
         p = p->next;

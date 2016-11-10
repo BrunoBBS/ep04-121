@@ -10,16 +10,16 @@ pointer stablelo_find(pointer start, char *x)
     return find(start, x);
 }
 
-pointer stablelo_insert(pointer *start, char *x, char mode)
+pointer stablelo_insert(pointer *start, char *x)
 {
     pointer p = stablelo_find(*start, x);
-    if (p)
+    if (!p)
+        insert_sorted(start, x);
+    else
     {
         p->val += 1;
         free(x);
     }
-    else
-        insert_sorted(start, x);
 }
 
 pointer stablelo_create()
@@ -48,7 +48,7 @@ void stablelo_print_a(pointer start)
 {
     pointer p;
     for (p = start; p; p = p->next)
-        printf("%s %d", p->key, p->val);
+        printf("%s %d\n", p->key, p->val);
 }
 
 void stablelo_print_o(pointer *start)
@@ -57,13 +57,20 @@ void stablelo_print_o(pointer *start)
     pointer p, *vect;
     for (i = 0, p = *start; p; p = p->next, i++)
         ;
-
+    printf("Contou a lista\n");
     vect = malloc(i * sizeof(pointer));
-    for (j = 0; j < i; j++)
+    printf("alocou a o vetro\n");
+    for (j = 0, p = *start; j < i; p = p->next, j++)
         vect[i] = p;
+    printf("copiou a lista no vetor\n");
 
+    printf("vai dar qsort\n");
     qsort(vect, i, sizeof(pointer), comp_list_n);
+    printf("fez qsort\n");
 
-    for (j = 0; j < i; j++)
-        printf("%s %d", vect[j]->key, vect[j]->val);
+    printf("vai pritar a lista\n");
+    for (j = 0; j < 2; j++)
+        printf("%s %d\n", vect[j]->key, vect[j]->val);
+
+    printf("printou a lista\n");
 }

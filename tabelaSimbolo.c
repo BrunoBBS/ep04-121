@@ -56,8 +56,8 @@ void stable_LO(FILE *input, char mode)
 {
     char *word;
     pointer table = stablelo_create();
-    for (word = nextWord(input); word > 0; word = nextWord(input))
-        if (word > 0)
+    for (word = nextWord(input); word[0] > 0; word = nextWord(input))
+        if (word[0] > 0)
             stablelo_insert(&table, word);
 
     if (mode == 'a')
@@ -101,14 +101,12 @@ char *nextWord(FILE *input)
         }
 
         currc = fgetc(input);
-        if (currc == -1)
-            return -1;
         if (i == 0 && isalpha(currc))
             newWord[i] = tolower(currc);
 
         else if (i != 0 && isalnum(currc))
             newWord[i] = tolower(currc);
-        else if (i == 0)
+        else if (i == 0 && currc != -1)
             continue;
         else
             break;
@@ -116,7 +114,6 @@ char *nextWord(FILE *input)
         i++;
 
     } while (1);
-    printf("A palvra é: %s,  valendo 100 mil reais\n", newWord);
     return newWord;
 }
 
