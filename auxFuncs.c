@@ -1,12 +1,20 @@
 #include "auxFuncs.h"
 #include "types.h"
+#include <stdio.h>
 #include <string.h>
 
 int comp_vect_a(const void *a, const void *b)
 {
-    if (a != NULL && b != NULL)
+    printf("ta procurand por\n");
+    printf("a: %s b: %s\n", (*(item *)a), (*(item *)b));
+    if (((item *)a)->key != NULL && ((item *)b)->key != NULL)
         return strcmp(((item *)a)->key, ((item *)b)->key);
-    return a ? -1 : 1;
+    if (a && !b)
+        return 1;
+    else if (!a && b)
+        return -1;
+    else
+        return 0;
 }
 
 int comp_vect_n(const void *a, const void *b)

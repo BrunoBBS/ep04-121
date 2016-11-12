@@ -61,7 +61,7 @@ void stablelo_print_o(pointer *start)
     vect = malloc(i * sizeof(pointer));
     printf("alocou a o vetro\n");
     for (j = 0, p = *start; j < i; p = p->next, j++)
-        vect[i] = p;
+        vect[j] = p;
     printf("copiou a lista no vetor\n");
 
     printf("vai dar qsort\n");
@@ -69,7 +69,7 @@ void stablelo_print_o(pointer *start)
     printf("fez qsort\n");
 
     printf("vai pritar a lista\n");
-    for (j = 0; j < 2; j++)
+    for (j = 0; j < i; j++)
         printf("%s %d\n", vect[j]->key, vect[j]->val);
 
     printf("printou a lista\n");

@@ -1,11 +1,18 @@
 #ifndef TABELASIMBOLO_AB
 #define TABELASIMBOLO_AB
 
-pointer *stableab_create();
+#include "types.h"
 
-void stableab_insert(pointer table, char *x);
+treeptr *stableab_create();
 
-void stableab_print_o(pointer table);
+void stableab_insert(treeptr *root, char *x);
 
-pointer stableab_find(pointer table, char *x);
+void stableab_print_o(treeptr root);
+
+void stableab_print_a(treeptr root);
+
+treeptr stableab_find(treeptr root, char *x);
+
+void stableab_destroy(treeptr *root);
+
 #endif

@@ -42,7 +42,7 @@ void stablevo_insert(stablevo *table, char *x)
     printf("Procurou  na tabela e achou o end %d \n", aux);
     if (aux)
     {
-        (aux->val)++;
+        (aux->val) += 1;
         free(x);
     }
     else
@@ -69,9 +69,13 @@ void stablevo_insert(stablevo *table, char *x)
         else
         {
             printf("A tabela tem espaco, vai passar td pro lado pra por no lugar\n");
-            for (i = table->size - 1; i > pos; i--)
+            for (i = 0; i < table->size; i++)
+                printf("espaco %d tem %s com val %d \n", i, table->vect[i].key, table->vect[i].val);
+            for (i = table->lfree - 1; i > pos; i--)
                 table->vect[i + 1] = table->vect[i];
             printf("Passou td pro lado\n");
+            for (i = 0; i < table->size; i++)
+                printf("espaco %d tem %s com val %d \n", i, table->vect[i].key, table->vect[i].val);
             table->vect[pos].key = x;
             table->vect[pos].val = 1;
             table->lfree++;
@@ -82,8 +86,13 @@ void stablevo_insert(stablevo *table, char *x)
 
 item *stablevo_find(stablevo *table, char *x)
 {
-    printf("Vai procurar na tabela\n");
-    return (item *)bsearch(x, table->vect, table->lfree, sizeof(item), comp_vect_a);
+    int i;
+    printf("Vai procurar na tabela %s \n", x);
+    for (i = 0; i < table->size; i++)
+        printf("espaco %d tem %s com val %d \n", i, table->vect[i].key, table->vect[i].val);
+    if (table->lfree == 0)
+        return 0;
+    return (item *)bsearch(x, table->vect, table->lfree - 1, sizeof(item), comp_vect_a);
 }
 
 void stablevo_destroy(stablevo *table)

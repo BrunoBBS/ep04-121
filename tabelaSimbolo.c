@@ -68,20 +68,18 @@ void stable_LO(FILE *input, char mode)
     stablelo_destroy(&table);
 }
 
-/** void stable_AB(FILE *input, char mode)
-  * {
-  *     char *word;
-  *     pointer *stable;
-  *     for (word = nextWord(input); *word > 0; word = nextWord(input))
-  *         stableab_insert();
-  *
-  *     if (mode == 'a')
-  *     {
-  *     }
-  *     else
-  *     {
-  *     }
-  * } */
+void stable_AB(FILE *input, char mode)
+{
+    char *word;
+    treeptr root;
+    for (word = nextWord(input); *word > 0; word = nextWord(input))
+        stableab_insert(&root, word);
+
+    if (mode == 'a')
+        stableab_print_a(root);
+
+    stableab_destroy(&root);
+}
 
 char *nextWord(FILE *input)
 {
@@ -156,6 +154,6 @@ int main(int argc, char *argv[])
     else if (!strcmp(mode, "LO"))
         stable_LO(input, ord);
 
-    /** else if (!strcmp(mode, "AB"))
-      *     stable_AB(input, ord); */
+    else if (!strcmp(mode, "AB"))
+        stable_AB(input, ord);
 }

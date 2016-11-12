@@ -23,13 +23,14 @@ struct knot
     pointer next;
 };
 
-typedef struct knot_AB *node;
-struct knot_AB
+typedef struct node *treeptr;
+
+struct node
 {
     char *key;
     int val;
-    node right;
-    node left;
-}
+    treeptr right;
+    treeptr left;
+};
 
 #endif
