@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #include "auxFuncs.h"
 #include "linkedList.h"
 #include "types.h"
@@ -35,13 +37,13 @@ void stableld_print_o(pointer *start)
         ;
 
     vect = malloc(i * sizeof(pointer));
-    for (j = 0; j < i; j++)
-        vect[i] = p;
+    for (j = 0, p = *start; j < i; p = p->next, j++)
+        vect[j] = p;
 
     qsort(vect, i, sizeof(pointer), comp_list_n);
 
     for (j = 0; j < i; j++)
-        printf("%s %d", vect[j]->key, vect[j]->val);
+        printf("%s %d\n", vect[j]->key, vect[j]->val);
 }
 
 void stableld_print_a(pointer *start)
@@ -52,13 +54,13 @@ void stableld_print_a(pointer *start)
         ;
 
     vect = malloc(i * sizeof(pointer));
-    for (j = 0; j < i; j++)
-        vect[i] = p;
+    for (j = 0, p = *start; j < i; p = p->next, j++)
+        vect[j] = p;
 
     qsort(vect, i, sizeof(pointer), comp_list_a);
 
     for (j = 0; j < i; j++)
-        printf("%s %d", vect[j]->key, vect[j]->val);
+        printf("%s %d\n", vect[j]->key, vect[j]->val);
 }
 
 void stableld_destroy(pointer *start)

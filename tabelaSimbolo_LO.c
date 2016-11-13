@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #include "auxFuncs.h"
 #include "linkedList.h"
 #include "types.h"
@@ -10,7 +12,7 @@ pointer stablelo_find(pointer start, char *x)
     return find(start, x);
 }
 
-pointer stablelo_insert(pointer *start, char *x)
+void stablelo_insert(pointer *start, char *x)
 {
     pointer p = stablelo_find(*start, x);
     if (!p)
@@ -57,20 +59,13 @@ void stablelo_print_o(pointer *start)
     pointer p, *vect;
     for (i = 0, p = *start; p; p = p->next, i++)
         ;
-    printf("Contou a lista\n");
+
     vect = malloc(i * sizeof(pointer));
-    printf("alocou a o vetro\n");
     for (j = 0, p = *start; j < i; p = p->next, j++)
         vect[j] = p;
-    printf("copiou a lista no vetor\n");
 
-    printf("vai dar qsort\n");
     qsort(vect, i, sizeof(pointer), comp_list_n);
-    printf("fez qsort\n");
 
-    printf("vai pritar a lista\n");
     for (j = 0; j < i; j++)
         printf("%s %d\n", vect[j]->key, vect[j]->val);
-
-    printf("printou a lista\n");
 }

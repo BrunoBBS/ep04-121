@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -14,7 +16,7 @@ void insert_first(pointer *start, char *x);
 void insert_sorted(pointer *start, char *x);
 
 /*This function receives a poiter to the first item of a linked list and a
- * string to find in the list and returns a pointer to the item if it 
+ * string to find in the list and returns a pointer to the item if it
  * exists or NULL if not.*/
 pointer find(pointer start, char *x);
 

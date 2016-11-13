@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #include "linkedList.h"
 #include "types.h"
 #include <stdlib.h>
@@ -7,9 +9,8 @@ void insert_first(pointer *start, char *x)
 {
     pointer k;
     k = malloc(sizeof(struct knot));
-    k->key = malloc(strlen(x) * sizeof(char));
-    strcpy(k->key, x);
-    k->val = 0;
+    k->key = x;
+    k->val = 1;
     k->next = *start;
     *start = k;
 }

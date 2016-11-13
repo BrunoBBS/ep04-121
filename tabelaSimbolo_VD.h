@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #ifndef TABELASIMBOLO_VD
 #define TABELASIMBOLO_VD
 

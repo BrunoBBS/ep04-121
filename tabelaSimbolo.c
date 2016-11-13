@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #include "auxFuncs.h"
 #include "tabelaSimbolo_AB.h"
 #include "tabelaSimbolo_LD.h"
@@ -27,14 +29,11 @@ void stable_VO(FILE *input, char mode)
 {
     char *word;
     stablevo *table = stablevo_create();
-    printf("Criou tabela\n");
     for (word = nextWord(input); word[0] > 0; word = nextWord(input))
         stablevo_insert(table, word);
-    printf("Preencheu tabela\n");
+
     stablevo_print(table, mode);
-    printf("Printou tabela\n");
     stablevo_destroy(table);
-    printf("Destruiu tabela\n");
 }
 
 void stable_LD(FILE *input, char mode)
@@ -45,9 +44,9 @@ void stable_LD(FILE *input, char mode)
         stableld_insert(&table, word);
 
     if (mode == 'a')
-        stableld_print_a(table);
+        stableld_print_a(&table);
     else
-        stableld_print_o(table);
+        stableld_print_o(&table);
 
     stableld_destroy(&table);
 }
@@ -63,7 +62,7 @@ void stable_LO(FILE *input, char mode)
     if (mode == 'a')
         stablelo_print_a(table);
     else
-        stablelo_print_o(table);
+        stablelo_print_o(&table);
 
     stablelo_destroy(&table);
 }
@@ -77,6 +76,8 @@ void stable_AB(FILE *input, char mode)
 
     if (mode == 'a')
         stableab_print_a(root);
+    else
+        stableab_print_o(root);
 
     stableab_destroy(&root);
 }
@@ -156,4 +157,6 @@ int main(int argc, char *argv[])
 
     else if (!strcmp(mode, "AB"))
         stable_AB(input, ord);
+
+    return 0;
 }

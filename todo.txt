@@ -1,5 +1,22 @@
 -AB             --V--
+
 -Debugging
+|    -AB
+|        -A     --V--
+|        -O     --V--
+|    -LD
+|        -A     --V--
+|        -O     --V--
+|    -LO
+|        -A     --V--
+|        -O     --V--
+|    -VD
+|        -A     --V--
+|        -O     --V--
+|    -VO
+|        -A
+|        -O
+|
 -LO             --V--
 -Terminar LD    --V--
 -MAKEFILE       --V--

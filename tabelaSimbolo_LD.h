@@ -1,3 +1,4 @@
+/*Bruno Boaventura Scholl*/
 
 #ifndef TABELASIMBOLO_LD
 #define TABELASIMBOLO_LD
@@ -11,8 +12,8 @@ pointer stableld_create();
 
 void stableld_destroy(pointer *start);
 
-void stableld_print_o(pointer start);
+void stableld_print_o(pointer *start);
 
-void stableld_print_a(pointer start);
+void stableld_print_a(pointer *start);
 
 #endif

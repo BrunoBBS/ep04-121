@@ -1,8 +1,38 @@
+/*Bruno Boaventura Scholl*/
+
 #include "tabelaSimbolo_AB.h"
 #include "types.h"
+#include "auxFuncs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+void make_vector(treeptr root, treeptr *vect, int *i)
+{
+    if (root)
+    {
+        vect[*i] = root;
+        if (root->left)
+        {
+            (*i)++;
+            make_vector(root->left, vect, i);
+        }
+        if (root->right){
+            (*i)++;
+            make_vector(root->right, vect, i);
+        }
+    }
+}
+
+void count_nodes(treeptr root, int *i)
+{
+    if (root)
+    {
+        (*i)++;
+        count_nodes(root->left, i);
+        count_nodes(root->right, i);
+    }
+}
 
 treeptr *stableab_create()
 {
@@ -66,6 +96,20 @@ void stableab_print_a(treeptr root)
         stableab_print_a(root->right);
     }
 }
+
+void stableab_print_o(treeptr root)
+{
+    int i, k=0, nitems=0;
+    treeptr *vect;
+    count_nodes(root, &nitems);
+    vect = malloc(nitems * sizeof(treeptr));
+    make_vector(root, vect, &k);
+    qsort(vect, nitems, sizeof(treeptr), comp_bst_n);
+    for(i = 0; i < nitems; i++)
+        printf("%s %d\n", vect[i]->key, vect[i]->val);
+}
+
+
 
 void stableab_destroy(treeptr *root)
 {

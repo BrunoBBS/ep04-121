@@ -1,3 +1,5 @@
+/*Bruno Boaventura Scholl*/
+
 #include "tabelaSimbolo_VD.h"
 #include "auxFuncs.h"
 #include "types.h"
@@ -24,7 +26,7 @@ int stablevd_find(stablevd *table, char *x)
             found = 1;
     }
     if (found)
-        return i;
+        return i-1;
     return -1;
 }
 
@@ -42,7 +44,7 @@ void stablevd_insert(stablevd *table, char *x)
         {
             item *tmp;
             table->size *= 2;
-            tmp = realloc(table->vect, table->size);
+            tmp = realloc(table->vect, table->size * sizeof(item));
             if (!tmp)
                 exit(-1);
             table->vect = tmp;
@@ -73,17 +75,9 @@ void stablevd_print(stablevd *table, char mode)
 {
     int i;
     if (mode == 'a')
-    {
         qsort(table->vect, table->size, sizeof(item), comp_vect_a);
-        printf("deu qsort pra alfa\n");
-    }
     else
-    {
         qsort(table->vect, table->size, sizeof(item), comp_vect_n);
-        printf("deu qsort pra num\n");
-    }
-
-    printf("vai printar \n");
 
     for (i = 0; i < table->lfree; i++)
         printf("%s %d\n", (table->vect[i]).key, (table->vect[i]).val);
