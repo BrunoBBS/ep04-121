@@ -85,7 +85,7 @@ void stable_AB(FILE *input, char mode)
 char *nextWord(FILE *input)
 {
     int i = 0, wsz = 5;
-    char *newWord2, currc, *newWord = malloc(5 * sizeof(char));
+    char *newWord2, currc, *newWord = malloc(wsz * sizeof(char));
     if (!newWord)
         exit(-1);
     do
@@ -93,7 +93,7 @@ char *nextWord(FILE *input)
         if (i == wsz)
         {
             wsz *= 2;
-            newWord2 = realloc(newWord, wsz);
+            newWord2 = realloc(newWord, wsz * sizeof(char));
             if (!newWord2)
                 exit(-1);
             newWord = newWord2;
@@ -113,6 +113,7 @@ char *nextWord(FILE *input)
         i++;
 
     } while (1);
+    newWord[i] = 0;
     return newWord;
 }
 

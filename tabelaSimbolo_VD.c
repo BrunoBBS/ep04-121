@@ -26,7 +26,7 @@ int stablevd_find(stablevd *table, char *x)
             found = 1;
     }
     if (found)
-        return i-1;
+        return i - 1;
     return -1;
 }
 
@@ -75,9 +75,9 @@ void stablevd_print(stablevd *table, char mode)
 {
     int i;
     if (mode == 'a')
-        qsort(table->vect, table->size, sizeof(item), comp_vect_a);
+        qsort(table->vect, table->lfree, sizeof(item), comp_vect_a);
     else
-        qsort(table->vect, table->size, sizeof(item), comp_vect_n);
+        qsort(table->vect, table->lfree, sizeof(item), comp_vect_n);
 
     for (i = 0; i < table->lfree; i++)
         printf("%s %d\n", (table->vect[i]).key, (table->vect[i]).val);
