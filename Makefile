@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-Wall -ansi -pedantic -pg
+CFLAGS:=-Wall -ansi -pedantic -O2
 BIN:=ep4
 
 #make binaries
@@ -30,4 +30,3 @@ clean:
 	rm -f linkedList.o
 	rm -f auxFuncs.o
 
-#debug
