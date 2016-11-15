@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-Wall -ansi -pedantic -g
+CFLAGS:=-Wall -ansi -pedantic -pg
 BIN:=ep4
 
 #make binaries
